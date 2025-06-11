@@ -137,7 +137,7 @@ public abstract class Personnage {
 
         pv = pv - totalDegats ;
 
-        System.out.println("*******\n"+getNom()+ " reçoit " + totalDegats + " points de dégats*******\n");
+        System.out.println("\n*******"+getNom()+ " reçoit " + totalDegats + " points de dégats*******\n");
     }
 
     public int getPvDedepart() {

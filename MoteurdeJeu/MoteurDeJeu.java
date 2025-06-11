@@ -106,7 +106,7 @@ public class MoteurDeJeu {
                         System.out.println("GAME OVER");
                         break;
                     }
-                    ennemisVaincus++;
+                    ennemisVaincus+=1;
                 }
             }
 
