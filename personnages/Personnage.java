@@ -126,15 +126,18 @@ public abstract class Personnage {
     }
 
     public void prendreDegats(int degats){
-        int totalDegats = degats - degats/defense;
 
+        int totalDegats = degats - (degats/defense);
+
+        // inflige des degats rececifs 
         if(getCompteurEtat() > 0){
           totalDegats =  totalDegats + getDegatsRececifs();
           setCompteurEtat(getCompteurEtat()-1);
         }
 
-
         pv = pv - totalDegats ;
+
+        System.out.println("*******\n"+getNom()+ " reçoit " + totalDegats + " points de dégats*******\n");
     }
 
     public int getPvDedepart() {

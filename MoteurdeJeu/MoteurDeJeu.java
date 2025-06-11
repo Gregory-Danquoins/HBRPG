@@ -6,6 +6,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import personnages.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class MoteurDeJeu {
         
@@ -42,46 +45,48 @@ public class MoteurDeJeu {
 
     public void creerHero() {
 
-        System.out.println("\n ####  Création du personnage  #### \n");
-        for (int i = 0; i < Hero.CLASSES_DISPONIBLES.size(); i++) {
-            System.out.println((i + 1) + " - " + Hero.CLASSES_DISPONIBLES.get(i));
-        }
-
-        int nombreDeClasse = Hero.CLASSES_DISPONIBLES.size();
-        int indexClasse = -1;
-
-        while (indexClasse < 0 || indexClasse >= nombreDeClasse) {
-            System.out.print("\n Choisis ton héro (1-" + nombreDeClasse + ") : ");
-            
-            if (scanner.hasNextInt()) {
-                indexClasse = scanner.nextInt() - 1;
-                scanner.nextLine(); // consomme le reste de la ligne
-            } else {
-                System.out.println("Veuillez entrer un nombre entier valide !");
-                scanner.nextLine(); // consomme l'entrée invalide
+            System.out.println("\n ####  Création du personnage  #### \n");
+            for (int i = 0; i < Hero.CLASSES_DISPONIBLES.size(); i++) {
+                System.out.println((i + 1) + " - " + Hero.CLASSES_DISPONIBLES.get(i));
             }
 
+            int nombreDeClasse = Hero.CLASSES_DISPONIBLES.size();
+            int indexClasse = -1;
 
-        }
-
-        System.out.print("\n Nom de ton héro : ");
-        String nomHero = scanner.nextLine();
-        String nomClasse = Hero.CLASSES_DISPONIBLES.get(indexClasse);
-
-     // Genere un nom de classe dynamiquement basé sur un indexClasse valide d'utilisateur 
-       try {
-            Class<? extends Hero> clazz = (Class<? extends Hero>) Class.forName("personnages." + nomClasse);
-            hero = clazz.getDeclaredConstructor(String.class).newInstance(nomHero);
-            } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException 
-                    | IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace(); 
+            while (indexClasse < 0 || indexClasse >= nombreDeClasse) {
+                System.out.print("\n Choisis ton héro (1-" + nombreDeClasse + ") : ");
+                
+                if (scanner.hasNextInt()) {
+                    indexClasse = scanner.nextInt() - 1;
+                    scanner.nextLine(); 
+                } else {
+                    System.out.println("Veuillez entrer un nombre entier valide !");
+                    scanner.nextLine(); 
                 }
-            System.out.println("Un hero vient de naître  : " + hero.getClass().getSimpleName() + " nommé " + nomHero);    
+
+
+            }
+
+            System.out.print("\n Nom de ton héro : ");
+            String nomHero = scanner.nextLine();
+            String nomClasse = Hero.CLASSES_DISPONIBLES.get(indexClasse);
+
+        // Genere un nom de classe dynamiquement basé sur un indexClasse valide d'utilisateur 
+            try {
+                Class<? extends Hero> clazz = (Class<? extends Hero>) Class.forName("personnages." + nomClasse);
+                hero = clazz.getDeclaredConstructor(String.class).newInstance(nomHero);
+                } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException 
+                        | IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace(); 
+                    }
+                System.out.println("Un hero vient de naître  : " + hero.getClass().getSimpleName() + " nommé " + nomHero);    
         }
     
 
         public void lancerPartie(){
             System.out.println("\n ###### Le combat commence #####\n");
+
+            int ennemisVaincus = 0; 
 
             for (Personnage ennemi : ennemis) {
                 ResultatCombat result =   moteurDeCombat.demmareCombat(hero, ennemi);
@@ -101,9 +106,28 @@ public class MoteurDeJeu {
                         System.out.println("GAME OVER");
                         break;
                     }
+                    ennemisVaincus++;
                 }
             }
+
+            System.out.println(hero.getNom()+ " a vaincu "+ ennemisVaincus + " ennemis");
+            sauvegarderResultat(ennemisVaincus);
         }
+
+    public void sauvegarderResultat(int ennemisVaincus) {
+        String nomFichier = "resultats.txt";
+
+        try (FileWriter fw = new FileWriter(nomFichier, true); 
+             PrintWriter pw = new PrintWriter(fw)) {
+
+            pw.println("Ennemis vaincus par " + hero.getNom()+ ": " + ennemisVaincus);
+
+            System.out.println("Résultat sauvegardé dans " + nomFichier);
+
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la sauvegarde : " + e.getMessage());
+        }
+    }
         
 }
 
