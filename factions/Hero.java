@@ -11,8 +11,8 @@ public class Hero extends Personnage {
 
     public static final List<String> CLASSES_DISPONIBLES = Arrays.asList("Guerrier","Mage","Voleur");
 
-   public Hero(String nom, Specialisation specialisation, int pv, int attaque, int defense, int mana) {
-        super(nom, specialisation, pv, attaque, defense, mana);
+   public Hero(String nom, Specialisation specialisation, int pv, int attaque, int defense, int mana, int xp) {
+        super(nom, specialisation, pv, attaque, defense, mana, xp);
     }
 
 }

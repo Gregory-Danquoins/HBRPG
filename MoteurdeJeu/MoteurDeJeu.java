@@ -90,7 +90,8 @@ public class MoteurDeJeu {
                         System.out.println(result.getMauvaisPerdant().getNom() + " se fait exploser avant de mourrir et emporte " + result.getVainqueur().getNom() + " avec lui dans la mort" );
                         System.out.println("GAME OVER");
                         break;
-                    } else {
+                } else {
+                    result.getVainqueur().augmenterXp(result.getPerdant().getXp()/5);
                     System.out.println(
                     "\n#### " +result.getVainqueur().getNom() + " a vaincu " + result.getPerdant().getNom() + " ###\n"+
                     " NOUVEL ADVERSAIRE \n"

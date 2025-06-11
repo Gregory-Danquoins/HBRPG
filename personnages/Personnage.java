@@ -44,14 +44,14 @@ public abstract class Personnage {
     private int etat = 0;
 
 
-    public Personnage(String nom, Specialisation specialisation, int pv, int attaque, int defense, int mana){
+    public Personnage(String nom, Specialisation specialisation, int pv, int attaque, int defense, int mana, int xp){
         this.nom = nom;
         this.specialisation = specialisation;
         this.attaqueDeDepart = attaque;
         this.defenseDeDepart = defense;
         this.manaDeDepart = mana;
         this.pvDedepart = pv;
-        this.augmenterXp(0);
+        this.augmenterXp(xp);
 
     }
 
