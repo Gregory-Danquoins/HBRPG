@@ -2,6 +2,7 @@ package personnages;
 
 import equipements.Arme;
 import equipements.Potion;
+import equipements.PotionDeMana;
 import equipements.PotionDeVie;
 import equipements.PotionEtat;
 import java.util.ArrayList;
@@ -52,6 +53,9 @@ public abstract class Personnage {
         this.manaDeDepart = mana;
         this.pvDedepart = pv;
         this.augmenterXp(xp);
+        this.potions.add(new PotionDeVie());
+        this.potions.add(new PotionEtat());
+        this.potions.add(new PotionDeMana());
 
     }
 
@@ -75,13 +79,14 @@ public abstract class Personnage {
     public void lancerPouvoir(Personnage cible, int pouvoir ){
 
          int degats = aleaDegats(specialisation.lancerPouvoir(pouvoir)) ;
+
          mana= mana - degats/2;
 
         cible.prendreDegats(degats);
 
         /*Si l'attaque' a infliger les degats maximum , la cible subira également des effets secondaires
          en fonction de la specialité au tour suivant*/
-        if(degats > attaque*0.90){
+        if(degats > attaque*0.50){
             infilgerEffetsSecondaire(cible, degats);   
         } 
 
@@ -98,7 +103,7 @@ public abstract class Personnage {
         
     }
 
-    private void utiliserPotion(Potion potion){
+    public void utiliserPotion(Potion potion){
         potion.getEffect(this);
     }
 
@@ -202,6 +207,7 @@ public abstract class Personnage {
 
     public void setPv(int pv) {
         this.pv = pv;
+        augmenterXp(0);
     }
 
     public int getPv(){

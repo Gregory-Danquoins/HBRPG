@@ -83,36 +83,36 @@ public class MoteurDeJeu {
         }
     
 
-        public void lancerPartie(){
-            System.out.println("\n ###### Le combat commence #####\n");
+    public void lancerPartie(){
+        System.out.println("\n ###### Le combat commence #####\n");
 
-            int ennemisVaincus = 0; 
+        int ennemisVaincus = 0; 
 
-            for (Personnage ennemi : ennemis) {
-                ResultatCombat result =   moteurDeCombat.demmareCombat(hero, ennemi);
+        for (Personnage ennemi : ennemis) {
+            ResultatCombat result =   moteurDeCombat.demmareCombat(hero, ennemi);
 
-                if(result.getMauvaisPerdant() != null){
-                        System.out.println(result.getMauvaisPerdant().getNom() + " se fait exploser avant de mourrir et emporte " + result.getVainqueur().getNom() + " avec lui dans la mort" );
-                        System.out.println("GAME OVER");
-                        break;
-                } else {
-                    result.getVainqueur().augmenterXp(result.getPerdant().getXp()/5);
-                    System.out.println(
-                    "\n#### " +result.getVainqueur().getNom() + " a vaincu " + result.getPerdant().getNom() + " ###\n"+
-                    " NOUVEL ADVERSAIRE \n"
-                    );
-                    
-                    if(result.getVainqueur() != hero){
-                        System.out.println("GAME OVER");
-                        break;
-                    }
-                    ennemisVaincus+=1;
+            if(result.getMauvaisPerdant() != null){
+                    System.out.println(result.getMauvaisPerdant().getNom() + " se fait exploser avant de mourrir et emporte " + result.getVainqueur().getNom() + " avec lui dans la mort" );
+                    System.out.println("GAME OVER");
+                    break;
+            } else {
+                result.getVainqueur().augmenterXp(result.getPerdant().getXp()/5);
+                System.out.println(
+                "\n#### " +result.getVainqueur().getNom() + " a vaincu " + result.getPerdant().getNom() + " ###\n"+
+                " NOUVEL ADVERSAIRE \n"
+                );
+                
+                if(result.getVainqueur() != hero){
+                    System.out.println("GAME OVER");
+                    break;
                 }
+                ennemisVaincus+=1;
             }
-
-            System.out.println(hero.getNom()+ " a vaincu "+ ennemisVaincus + " ennemis");
-            sauvegarderResultat(ennemisVaincus);
         }
+
+        System.out.println(hero.getNom()+ " a vaincu "+ ennemisVaincus + " ennemis");
+        sauvegarderResultat(ennemisVaincus);
+    }
 
     public void sauvegarderResultat(int ennemisVaincus) {
         String nomFichier = "resultats.txt";

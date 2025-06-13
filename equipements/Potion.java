@@ -6,7 +6,7 @@ public abstract class Potion {
 
     private final String NOM = "Potion";
 
-    public String getNOM() {
+    public String getNom() {
         return NOM;
     }
 

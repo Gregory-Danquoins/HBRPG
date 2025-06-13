@@ -6,7 +6,8 @@ public class PotionDeMana extends Potion{
 
         private final String NOM = "Potion de mana";
 
-        public String getNOM() {
+        @Override
+        public String getNom() {
                 return NOM;
         }
 

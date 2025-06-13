@@ -6,14 +6,15 @@ public class PotionDeVie extends Potion{
 
         private final String NOM = "Potion de vie";
 
-        public String getNOM() {
+        private final int RATIO = 1;
+
+        @Override
+        public String getNom() {
                 return NOM;
         }
 
-        private final int RATIO = 1;
-
         public void getEffect(Personnage cible) {
-                cible.setPv(cible.getPvDedepart());
+                cible.setPv(cible.getPvDedepart());       
         }
   
     

@@ -2,13 +2,13 @@ package equipements;
 
 import personnages.Personnage;
 
-public class PotionEtat extends  Potion{
+public class PotionEtat extends Potion{
 
     private final String NOM = "potion d'etat";
 
-    
-    public String getNOM() {
-        return NOM;
+    @Override
+    public String getNom() {
+      return NOM;
     }
 
     public void getEffect(Personnage cible) {

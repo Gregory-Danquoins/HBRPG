@@ -1,6 +1,10 @@
 package MoteurdeJeu;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import equipements.Potion;
 import personnages.Personnage;
 
 public class MoteurDeCombat {
@@ -55,7 +59,7 @@ public class MoteurDeCombat {
             "\n\n"+joueur.getNom()+" choisis une action : "+
             "\n 1. Attaquer"+
             "\n 2. Utilser le pouvoir " + joueur.getSpecialisation().getPOUVOIRS().get(0)+
-            "\n 3. Utiliser un objet");
+            "\n 3. Utiliser une potion");
 
             System.out.print("Votre choix (1-3) : ");
 
@@ -70,10 +74,57 @@ public class MoteurDeCombat {
             case 2:
                 joueur.lancerPouvoir(cible, 1);
                 break;
+            case 3:
+                 afficherMenuPotion(joueur,cible);
+                break;
             default:
-                System.out.println("Choix invalide.");
                 break;
         }
-
     }
+
+    private void afficherMenuPotion (Personnage joueur, Personnage cible) {
+
+        List<Potion> potionsDisponibles = joueur.getPotions();
+
+        if (potionsDisponibles.isEmpty()) {
+            System.out.println("Aucune potion disponible !");
+            getActionDuJoueur(joueur, cible);
+        }
+
+        System.out.println("Potions disponibles :");
+        for (int i = 0; i < potionsDisponibles.size(); i++) {
+            Potion p = potionsDisponibles.get(i);
+            System.out.println((i + 1) + ". " + p.getNom());
+        }
+
+
+        System.out.println("Choisissez une potion (entrez le numéro) :");
+
+        Scanner scanner = new Scanner(System.in);
+        int choix = -1;
+
+        // Boucle de validation pour éviter les mauvaises saisies
+        while (choix < 1 || choix > potionsDisponibles.size()) {
+            try {
+                System.out.print("> ");
+                choix = scanner.nextInt();
+                if (choix < 1 || choix > potionsDisponibles.size()) {
+                    System.out.println("Choix invalide, veuillez réessayer.");
+                }
+            } catch (Exception e) {
+                System.out.println("Entrée invalide, veuillez entrer un numéro.");
+                scanner.nextLine(); // on consomme l'entrée incorrecte
+            }
+        }
+
+        Potion potionChoisie = potionsDisponibles.get(choix - 1);
+        potionChoisie.getEffect(joueur);
+        System.out.println("Vous avez choisi : " + potionChoisie.getNom());
+
+
+        
+        
+    }
+
+    
 }
