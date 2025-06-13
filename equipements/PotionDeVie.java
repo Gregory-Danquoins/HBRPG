@@ -14,7 +14,8 @@ public class PotionDeVie extends Potion{
         }
 
         public void getEffect(Personnage cible) {
-                cible.setPv(cible.getPvDedepart());       
+                cible.setPv(cible.getPvDedepart());   
+                cible.getPotions().remove(this);   
         }
   
     

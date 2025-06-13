@@ -120,6 +120,8 @@ public class MoteurDeCombat {
         Potion potionChoisie = potionsDisponibles.get(choix - 1);
         potionChoisie.getEffect(joueur);
         System.out.println("Vous avez choisi : " + potionChoisie.getNom());
+            getActionDuJoueur(joueur, cible);
+
 
 
         

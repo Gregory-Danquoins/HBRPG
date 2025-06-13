@@ -15,6 +15,8 @@ public class PotionDeMana extends Potion{
 
         public void getEffect(Personnage cible) {
                 cible.setMana(cible.getManaDeDepart());
+                cible.getPotions().remove(this);   
+
         }
   
     

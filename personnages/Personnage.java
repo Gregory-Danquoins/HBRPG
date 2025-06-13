@@ -86,7 +86,7 @@ public abstract class Personnage {
 
         /*Si l'attaque' a infliger les degats maximum , la cible subira également des effets secondaires
          en fonction de la specialité au tour suivant*/
-        if(degats > attaque*0.50){
+        if(degats > attaque*0.90){
             infilgerEffetsSecondaire(cible, degats);   
         } 
 
@@ -125,7 +125,7 @@ public abstract class Personnage {
             Potion potion = cible.potions.get(0);
             potions.add(potion);
             cible.potions.remove(potion);
-            System.out.println(getNom() + " vient de voler "+ potion.getNOM() );
+            System.out.println(getNom() + " vient de voler "+ potion.getNom() );
         }
         
     }
@@ -216,7 +216,9 @@ public abstract class Personnage {
 
     // Apporte une variation aux degats entre 80 et 100%
     private int aleaDegats(int degats){
-        double totalDegats = ( 0.8 + (1.0 - 0.8) * random.nextDouble() * degats);
+        // double totalDegats = ( 0.8 + (1.0 - 0.8) * random.nextDouble() * degats);
+       double facteur = 0.8 + 0.2 * random.nextDouble();
+      double totalDegats = facteur * degats;
     return (int) totalDegats;
     
     }
@@ -277,6 +279,7 @@ public abstract class Personnage {
 
     public void setMana(int mana) {
         this.mana = mana;
+        augmenterXp(0);
     }
 
     public String getNom() {

@@ -13,6 +13,8 @@ public class PotionEtat extends Potion{
 
     public void getEffect(Personnage cible) {
                 cible.setEtat("normal");
+                cible.getPotions().remove(this);   
+
         }
     
 }
