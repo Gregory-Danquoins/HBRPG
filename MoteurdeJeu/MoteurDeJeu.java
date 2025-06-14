@@ -126,14 +126,14 @@ public class MoteurDeJeu {
                 // Le vainqueur récupère 20% des xp du perdant 
                 result.getVainqueur().augmenterXp(result.getPerdant().getXp()/5, ParametresCombat.RETABLISSEMENT);
                 System.out.println(
-                "\n###### " +result.getVainqueur().getNom() + " a vaincu " + result.getPerdant().getNom() + " ######\n"+
-                " ###############  NOUVEL ADVERSAIRE  ################## \n"
+                "\n###### " +result.getVainqueur().getNom() + " a vaincu " + result.getPerdant().getNom() + " ######\n"
                 );
                 
                 if(result.getVainqueur() != hero){
                     System.out.println("GAME OVER");
                     break;
                 }
+                System.out.print(" ###############  NOUVEL ADVERSAIRE  ################## \n");
                 ennemisVaincus+=1;
             }
         }
