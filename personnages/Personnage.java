@@ -118,7 +118,7 @@ public abstract class Personnage {
         Si les degats infligés sont strictement égaux au pv restant,
         la cible se fait exploser et emporte l'adversaire dans la mort
          */ 
-        if(degats == cible.getPv() || ParametresCombat.FURIE){
+        if(degatsFinaux == cible.getPv() || ParametresCombat.FURIE){
             cible.setEtat("furie");
             setPv(0);
             cible.setPv(0);
