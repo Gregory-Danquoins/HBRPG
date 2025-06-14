@@ -1,9 +1,15 @@
 package factions;
 
+import java.util.Arrays;
+import java.util.List;
+
 import personnages.Personnage;
 import specialisations.Specialisation;
 
 public class Ennemi extends Personnage{
+
+    public static final List<String> CLASSES_DISPONIBLES = Arrays.asList("Dragon","Gobelin","Troll");
+
 
     public Ennemi(String nom, Specialisation specialisation, int pv, int attaque, int defense, int mana,int  xp) {
         super(nom, specialisation, pv, attaque, defense, mana, xp);

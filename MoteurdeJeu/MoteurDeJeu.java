@@ -2,8 +2,12 @@ package MoteurdeJeu;
 
 import factions.Ennemi;
 import factions.Hero;
+
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import ParametresCombat.ParametresCombat;
@@ -18,6 +22,9 @@ public class MoteurDeJeu {
     private Hero hero;
     private static final Scanner scanner = new Scanner(System.in);
     private static final MoteurDeCombat moteurDeCombat= new MoteurDeCombat();
+    private static final int TOTAL_ENNEMIS =10;
+    private int ennemisVaincus=0;
+
 
    
     public void lancerJeu(){
@@ -27,21 +34,44 @@ public class MoteurDeJeu {
 
     }
 
+    public static Ennemi genererEnnemiAleatoire() {
+        Random random = new Random();
+
+        // Étape 1 : choisir une classe aléatoire
+        List<String> classesDisponibles = Ennemi.CLASSES_DISPONIBLES;
+        String nomClasse = classesDisponibles.get(random.nextInt(classesDisponibles.size()));
+
+        try {
+            //  obtenir la classe 
+            Class<?> clazz = Class.forName("personnages." + nomClasse);
+
+            // récuper NOMS_DISPONIBLES de la classe
+            Field nomsDisponiblesField = clazz.getDeclaredField("NOMS_DISPONIBLES");
+            List<String> nomsDisponibles = (List<String>) nomsDisponiblesField.get(null);
+
+            // choisir un nom aléatoire
+            String nomAleatoire = nomsDisponibles.get(random.nextInt(nomsDisponibles.size()));
+
+            // créer l'ennemi
+            Ennemi ennemi = (Ennemi) clazz.getDeclaredConstructor(String.class).newInstance(nomAleatoire);
+            System.out.println("Un Ennemi vient de naître : " + ennemi.getClass().getSimpleName() + " nommé " + nomAleatoire);
+            return ennemi;
+
+        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException |
+                 NoSuchMethodException | InstantiationException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
     public void creerEnnemis() {
-   
-        ennemis.add(new Gobelin("Gobelin des bois"));
-        ennemis.add(new Gobelin("Gobelin des bois"));
-        ennemis.add(new Dragon("Dragon Noir"));
-        ennemis.add(new Troll("Troll des cavernes"));
-        ennemis.add(new Gobelin("Gobelin farouche"));
-        ennemis.add(new Troll("Troll des montagnes"));
-        ennemis.add(new Gobelin("Gobelin sournois"));
-        ennemis.add(new Dragon("Dragon Ancien"));
-        ennemis.add(new Troll("Troll Berserker"));
-        ennemis.add(new Gobelin("Gobelin chaman"));
 
-        System.out.println("10 ennemis ont été créés.");
+        for (int i = 0; i < TOTAL_ENNEMIS+1; i++) {
+          ennemis.add(genererEnnemiAleatoire());
+        }
+         
+        System.out.println(TOTAL_ENNEMIS+" ennemis ont été créés.");
     }
 
 
@@ -87,8 +117,6 @@ public class MoteurDeJeu {
 
     public void lancerPartie(){
         System.out.println("\n ###### Le combat commence #####\n");
-
-        int ennemisVaincus = 0; 
 
         for (Personnage ennemi : ennemis) {
             ResultatCombat result =   moteurDeCombat.demmareCombat(hero, ennemi);
