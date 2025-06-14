@@ -2,7 +2,6 @@ package specialisations;
 
 import java.util.Arrays;
 import java.util.List;
-import personnages.Personnage;
 
 public class Furtif extends Specialisation{
 
@@ -21,15 +20,15 @@ public class Furtif extends Specialisation{
     }
 
     @Override
-    public int lancerPouvoir(int pouvoir) {
+    public int lancerPouvoir(int pouvoir, int attaqueNormale) {
         return switch (pouvoir) {
-            case 0 -> assomer();
+            case 0 -> assomer(attaqueNormale);
             default -> 0;
         };
     }
 
-    private int assomer(){
-        return Personnage.ATTAQUE_DE_BASE*2;
+    private int assomer(int attaqueNormale){
+        return attaqueNormale*2;
     }
    
 }

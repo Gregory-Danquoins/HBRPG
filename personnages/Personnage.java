@@ -14,7 +14,7 @@ import specialisations.Specialisation;
 
 public abstract class Personnage {
 
-    public final static String[] ETATS  = {
+    public static final String[] ETATS  = {
         "normal",
         "gelé",
         "en feu",
@@ -86,7 +86,7 @@ public abstract class Personnage {
     le pouvoir correspondant renvois le montant de degat a infliger*/
     public void lancerPouvoir(Personnage cible, int pouvoir ){
 
-         int degats = aleaDegats(specialisation.lancerPouvoir(pouvoir)) ;
+         int degats = aleaDegats(specialisation.lancerPouvoir(pouvoir, getAttaque())) ;
 
          mana = mana - degats/3;
 

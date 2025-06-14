@@ -4,7 +4,7 @@ import personnages.Personnage;
 
 public class PotionEtat extends Potion{
 
-    public static final String NOM = "Potion de Mana";
+    public static final String NOM = "Potion d'état'";
 
     @Override
     public String getNom() {

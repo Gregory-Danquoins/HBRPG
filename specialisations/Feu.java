@@ -3,7 +3,6 @@ package specialisations;
 import Pouvoirs.PouvoirSpecial;
 import java.util.Arrays;
 import java.util.List;
-import personnages.Personnage;
 
 public class Feu extends Specialisation implements PouvoirSpecial{
 
@@ -23,20 +22,20 @@ public class Feu extends Specialisation implements PouvoirSpecial{
     }
 
     @Override
-    public int lancerPouvoir(int pouvoir) {
+    public int lancerPouvoir(int pouvoir, int attaqueNormale) {
         return switch (pouvoir) {
-            case 0 -> lancerBouleDeFeu();
-            case 1 -> lancerMeteor();
+            case 0 -> lancerBouleDeFeu(attaqueNormale);
+            case 1 -> lancerMeteor(attaqueNormale);
             default -> 0;
         };
     }
     
-    private int lancerBouleDeFeu(){
-        return Personnage.ATTAQUE_DE_BASE*2;
+    private int lancerBouleDeFeu(int attaqueNormale){
+        return attaqueNormale*2;
     }
     
-    private int lancerMeteor(){
-        return Personnage.ATTAQUE_DE_BASE*2;
+    private int lancerMeteor(int attaqueNormale){
+        return attaqueNormale*2;
     }
 
     

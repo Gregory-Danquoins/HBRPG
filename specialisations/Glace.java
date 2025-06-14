@@ -2,7 +2,6 @@ package specialisations;
 
 import java.util.Arrays;
 import java.util.List;
-import personnages.Personnage;
 
 public class Glace extends Specialisation {
 
@@ -21,20 +20,20 @@ public class Glace extends Specialisation {
     }
 
     @Override
-    public int lancerPouvoir(int pouvoir) {
+    public int lancerPouvoir(int pouvoir, int attaqueNormale) {
         return switch (pouvoir) {
-            case 0 -> lancerEclairdeGivre();
-            case 1 -> lancerBlizzard();
+            case 0 -> lancerEclairdeGivre(attaqueNormale);
+            case 1 -> lancerBlizzard(attaqueNormale);
             default -> 0;
         };
     }
 
-    private int lancerEclairdeGivre(){
-        return Personnage.ATTAQUE_DE_BASE*2;
+    private int lancerEclairdeGivre(int attaqueNormale){
+        return attaqueNormale*2;
     }
     
-    private int lancerBlizzard(){
-        return Personnage.ATTAQUE_DE_BASE*2;
+    private int lancerBlizzard(int attaqueNormale){
+        return attaqueNormale*2;
     }
     
 }

@@ -3,5 +3,5 @@ package Pouvoirs;
 
 public interface PouvoirSpecial {
 
-    int lancerPouvoir(int pouvoir);
+    int lancerPouvoir(int pouvoir, int attaqueNormale);
 }

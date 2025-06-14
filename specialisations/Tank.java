@@ -3,8 +3,6 @@ package specialisations;
 import java.util.Arrays;
 import java.util.List;
 
-import personnages.Personnage;
-
 public class Tank extends Specialisation{
 
     public static final String CATEGORIE ="TANK";
@@ -22,15 +20,15 @@ public class Tank extends Specialisation{
     }
 
     @Override
-    public int lancerPouvoir(int pouvoir) {
+    public int lancerPouvoir(int pouvoir, int attaqueNormale) {
         return switch (pouvoir) {
-            case 0 -> lancerExcalibur();
+            case 0 -> lancerExcalibur(attaqueNormale);
             default -> 0;
         };
     }
 
-    private int lancerExcalibur(){
-        return Personnage.ATTAQUE_DE_BASE*2;
+    private int lancerExcalibur(int attaqueNormale){
+        return attaqueNormale*2;
     }
    
 }
