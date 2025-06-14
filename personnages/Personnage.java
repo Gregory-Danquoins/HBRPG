@@ -97,7 +97,7 @@ public abstract class Personnage {
     public void lancerPouvoir(Personnage cible, int indexPouvoir ){
 
          int degatsDuPouvoir = specialisation.lancerPouvoir(indexPouvoir, getAttaque());
-         int degats = aleaDegats(degatsDuPouvoir);
+         int degatsFinaux = aleaDegats(degatsDuPouvoir);
 
          double coutMana = (double) degatsDuPouvoir / 3;
          
@@ -106,12 +106,12 @@ public abstract class Personnage {
          }
          mana = mana - (int) coutMana;
 
-        cible.prendreDegats(degats);
+        cible.prendreDegats(degatsFinaux);
 
         /*Si l'attaque' a infliger les degats maximum , la cible subira également des effets secondaires
          en fonction de la specialité au tour suivant*/
-        if(degats > attaque*ParametresCombat.RATIO_COUP_CRITIQUE){
-            infilgerEffetsSecondaire(cible, degats);   
+        if(degatsFinaux > degatsDuPouvoir*ParametresCombat.RATIO_COUP_CRITIQUE){
+            infilgerEffetsSecondaire(cible, degatsFinaux);   
         } 
 
         /*
