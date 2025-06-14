@@ -94,9 +94,9 @@ public abstract class Personnage {
 
     /*Le jouveur choisis un pouvoir disponible dans un menu, 
     le pouvoir correspondant renvois le montant de degat a infliger*/
-    public void lancerPouvoir(Personnage cible, int pouvoir ){
+    public void lancerPouvoir(Personnage cible, int indexPouvoir ){
 
-         int degats = aleaDegats(specialisation.lancerPouvoir(pouvoir, getAttaque())) ;
+         int degats = aleaDegats(specialisation.lancerPouvoir(indexPouvoir, getAttaque())) ;
 
          double coutMana = (double) degats / 3;
          
