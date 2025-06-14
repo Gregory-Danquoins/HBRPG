@@ -33,8 +33,7 @@ public class MoteurDeJeu {
     }
 
     private Ennemi genererEnnemiAleatoire() {
-        Random random = new Random();
-
+    
         // Étape 1 : choisir une classe aléatoire
         List<String> classesDisponibles = Ennemi.CLASSES_DISPONIBLES;
         String nomClasse = classesDisponibles.get(random.nextInt(classesDisponibles.size()));
