@@ -113,7 +113,7 @@ public class MoteurDeJeu {
         }
     
 
-    public void lancerPartie(){
+    private void lancerPartie(){
         System.out.println("\n ########### LE COMBAT COMMENCE ##########\n");
 
         for (Personnage ennemi : ennemis) {
