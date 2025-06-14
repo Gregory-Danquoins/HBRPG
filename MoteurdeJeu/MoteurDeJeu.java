@@ -20,6 +20,7 @@ public class MoteurDeJeu {
     private Hero hero;
     private static final Scanner scanner = new Scanner(System.in);
     private static final MoteurDeCombat moteurDeCombat= new MoteurDeCombat();
+    private final Random random = new Random();
     private int ennemisVaincus=0;
 
 
@@ -31,7 +32,7 @@ public class MoteurDeJeu {
 
     }
 
-    public static Ennemi genererEnnemiAleatoire() {
+    private Ennemi genererEnnemiAleatoire() {
         Random random = new Random();
 
         // Étape 1 : choisir une classe aléatoire
@@ -62,7 +63,7 @@ public class MoteurDeJeu {
         return null;
     }
 
-    public void creerEnnemis() {
+    private void creerEnnemis() {
 
         for (int i = 0; i < ParametresCombat.TOTAL_ENNEMIS+1; i++) {
           ennemis.add(genererEnnemiAleatoire());
@@ -72,7 +73,7 @@ public class MoteurDeJeu {
     }
 
 
-    public void creerHero() {
+    private void creerHero() {
 
             System.out.println("\n ####  Création du personnage  #### \n");
             for (int i = 0; i < Hero.CLASSES_DISPONIBLES.size(); i++) {
@@ -113,7 +114,7 @@ public class MoteurDeJeu {
     
 
     public void lancerPartie(){
-        System.out.println("\n ###### Le combat commence #####\n");
+        System.out.println("\n ########### LE COMBAT COMMENCE ##########\n");
 
         for (Personnage ennemi : ennemis) {
             ResultatCombat result =   moteurDeCombat.demmareCombat(hero, ennemi);
@@ -142,7 +143,7 @@ public class MoteurDeJeu {
         sauvegarderResultat(ennemisVaincus);
     }
 
-    public void sauvegarderResultat(int ennemisVaincus) {
+    private void sauvegarderResultat(int ennemisVaincus) {
         String nomFichier = "resultats.txt";
 
         try (FileWriter fw = new FileWriter(nomFichier, true); 

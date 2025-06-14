@@ -29,7 +29,6 @@ public abstract class Personnage {
     public static final int DEFENSE_DE_BASE=5;
     public static final int MANA_DE_BASE=50;
     public static final int PV_DE_BASE=50;
-
     private ArrayList<Potion> potions = new ArrayList<>();
     private Specialisation specialisation;
     private Arme arme;
