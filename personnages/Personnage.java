@@ -294,7 +294,7 @@ public abstract class Personnage {
 
     public void setMana(int mana) {
         this.mana = mana;
-        augmenterXp(0);
+        augmenterXp(0,ParametresCombat.RETABLISSEMENT);
     }
 
     public String getNom() {
