@@ -6,15 +6,18 @@ import personnages.Personnage;
 
 public class Glace extends Specialisation {
 
-    final private String categorie ="GLACE";
-
+    public static final String CATEGORIE ="GLACE";
     
-    public final List<String> POUVOIRS = Arrays.asList("eclair de givre", 
-        "blizzard");
+    public static final List<String> POUVOIRS = Arrays.asList("eclair de givre", "blizzard");
 
     @Override
-    public List<String> getPOUVOIRS() {
-        return this.POUVOIRS;
+    public List<String> getPouvoirs() {
+        return POUVOIRS;
+    }
+
+    @Override
+    public String getCategorie() {
+        return CATEGORIE;
     }
 
     @Override
@@ -24,10 +27,6 @@ public class Glace extends Specialisation {
             case 1 -> lancerBlizzard();
             default -> 0;
         };
-    }
-
-    public String getCategorie(){
-        return  categorie;
     }
 
     private int lancerEclairdeGivre(){

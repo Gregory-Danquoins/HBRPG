@@ -6,13 +6,18 @@ import personnages.Personnage;
 
 public class Furtif extends Specialisation{
 
-    final private String categorie ="FURTIF";
+    public static final String CATEGORIE ="FURTIF";
 
-    public final List<String> POUVOIRS = Arrays.asList("assomer");
+    public static final List<String> POUVOIRS = Arrays.asList("assomer");
 
     @Override
-    public List<String> getPOUVOIRS() {
-        return this.POUVOIRS;
+    public List<String> getPouvoirs() {
+        return POUVOIRS;
+    }
+
+    @Override
+    public String getCategorie() {
+        return CATEGORIE;
     }
 
     @Override
@@ -21,10 +26,6 @@ public class Furtif extends Specialisation{
             case 0 -> assomer();
             default -> 0;
         };
-    }
-
-    public String donnerCategorie(){
-        return  categorie;
     }
 
     private int assomer(){

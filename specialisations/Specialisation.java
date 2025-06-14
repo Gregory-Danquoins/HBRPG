@@ -6,18 +6,11 @@ import java.util.List;
 
 public abstract  class Specialisation {
 
-    public final List<String> POUVOIRS = Arrays.asList();
-    public List<String> getPOUVOIRS() {
-        return POUVOIRS;
-    }
+    public abstract List<String> getPouvoirs();
 
-    private static final String categorie="";
+    public abstract int lancerPouvoir(int pouvoir);
 
-    abstract public int lancerPouvoir(int pouvoir);
-
-    public String getCategorie(){
-        return this.categorie;
-    }
+    public abstract String getCategorie();
 
     
 }

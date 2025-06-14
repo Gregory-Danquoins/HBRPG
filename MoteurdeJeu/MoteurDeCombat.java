@@ -58,7 +58,7 @@ public class MoteurDeCombat {
             "\n___________________________________________________\n"+
             "\n\n"+joueur.getNom()+" choisis une action : "+
             "\n 1. Attaquer"+
-            "\n 2. Utilser le pouvoir " + joueur.getSpecialisation().getPOUVOIRS().get(0)+
+            "\n 2. Utilser le pouvoir " + joueur.getSpecialisation().getPouvoirs().get(0)+
             "\n 3. Utiliser une potion");
 
             System.out.print("Votre choix (1-3) : ");

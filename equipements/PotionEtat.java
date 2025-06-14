@@ -4,17 +4,17 @@ import personnages.Personnage;
 
 public class PotionEtat extends Potion{
 
-    private final String NOM = "potion d'etat";
+    public static final String NOM = "Potion de Mana";
 
     @Override
     public String getNom() {
-      return NOM;
+            return NOM;
     }
-
+    
+    @Override
     public void getEffect(Personnage cible) {
                 cible.setEtat("normal");
                 cible.getPotions().remove(this);   
-
         }
     
 }

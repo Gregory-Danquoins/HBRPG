@@ -4,19 +4,18 @@ import personnages.Personnage;
 
 public class PotionDeMana extends Potion{
 
-        private final String NOM = "Potion de mana";
+        public static final String NOM = "Potion de Mana";
+        public static final int RATIO = 1;
 
         @Override
         public String getNom() {
                 return NOM;
         }
 
-        private final int RATIO = 1;
-
+        @Override
         public void getEffect(Personnage cible) {
-                cible.setMana(cible.getManaDeDepart());
+                cible.setMana(cible.getManaDeDepart()*RATIO);
                 cible.getPotions().remove(this);   
-
         }
   
     

@@ -1,7 +1,6 @@
 package factions;
 
 import personnages.Personnage;
-import specialisations.Feu;
 import specialisations.Specialisation;
 
 public class Ennemi extends Personnage{

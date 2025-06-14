@@ -7,14 +7,19 @@ import personnages.Personnage;
 
 public class Feu extends Specialisation implements PouvoirSpecial{
 
-    final private String categorie ="FEU";
+    public static final String CATEGORIE ="FEU";
 
-    public final List<String> POUVOIRS = Arrays.asList("boule de feu", 
+    public static final List<String> POUVOIRS = Arrays.asList("boule de feu", 
         "meteor");
 
     @Override
-    public List<String> getPOUVOIRS() {
+    public List<String> getPouvoirs() {
         return POUVOIRS;
+    }
+
+    @Override
+    public String getCategorie() {
+        return CATEGORIE;
     }
 
     @Override
@@ -25,10 +30,7 @@ public class Feu extends Specialisation implements PouvoirSpecial{
             default -> 0;
         };
     }
-
-    public String getCategorie(){
-        return  categorie;
-    }
+    
     private int lancerBouleDeFeu(){
         return Personnage.ATTAQUE_DE_BASE*2;
     }
@@ -36,4 +38,6 @@ public class Feu extends Specialisation implements PouvoirSpecial{
     private int lancerMeteor(){
         return Personnage.ATTAQUE_DE_BASE*2;
     }
+
+    
 }

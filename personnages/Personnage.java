@@ -45,7 +45,7 @@ public abstract class Personnage {
     private int etat = 0;
 
 
-    public Personnage(String nom, Specialisation specialisation, int pv, int attaque, int defense, int mana, int xp){
+    protected Personnage(String nom, Specialisation specialisation, int pv, int attaque, int defense, int mana, int xp){
         this.nom = nom;
         this.specialisation = specialisation;
         this.attaqueDeDepart = attaque;

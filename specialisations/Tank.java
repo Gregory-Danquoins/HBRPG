@@ -1,14 +1,25 @@
 package specialisations;
 
+import java.util.Arrays;
+import java.util.List;
+
 import personnages.Personnage;
 
 public class Tank extends Specialisation{
 
-    final private String categorie ="TANK";
+    public static final String CATEGORIE ="TANK";
 
-    public final static String[] pouvoirs = {
-        "excalibur"
-    };
+    public static final List<String> POUVOIRS = Arrays.asList("excalibur");
+
+    @Override
+    public List<String> getPouvoirs() {
+        return POUVOIRS;
+    }
+
+    @Override
+    public String getCategorie() {
+        return CATEGORIE;
+    }
 
     @Override
     public int lancerPouvoir(int pouvoir) {
@@ -16,10 +27,6 @@ public class Tank extends Specialisation{
             case 0 -> lancerExcalibur();
             default -> 0;
         };
-    }
-
-    public String donnerCategorie(){
-        return  categorie;
     }
 
     private int lancerExcalibur(){

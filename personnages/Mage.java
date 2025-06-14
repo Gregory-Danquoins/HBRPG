@@ -2,7 +2,6 @@ package personnages;
 
 
 import factions.Hero;
-import specialisations.Feu;
 import specialisations.Glace;
 
 public class Mage extends Hero{
