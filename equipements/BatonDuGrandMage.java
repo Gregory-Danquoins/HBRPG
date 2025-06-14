@@ -8,4 +8,24 @@ public class BatonDuGrandMage extends Arme{
     public static final String NOM = "Baton du grand mage";
 
 
+    @Override
+    public int getBonnusAttaque() {
+        return BONUS_ATTAQUE;
+    }
+    @Override
+    public int getBonnusDefense() {
+        return BONUS_DEFENSE;
+    }
+    @Override
+    public int getBonnusMana() {
+        return BONUS_MANA;
+    }
+
+    @Override
+    public String getNom() {
+        return NOM;
+    }
+    
+
+
 }

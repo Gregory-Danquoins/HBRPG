@@ -2,14 +2,12 @@ package MoteurdeJeu;
 
 import factions.Ennemi;
 import factions.Hero;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-
 import ParametresCombat.ParametresCombat;
 import personnages.*;
 import java.io.FileWriter;
@@ -22,7 +20,6 @@ public class MoteurDeJeu {
     private Hero hero;
     private static final Scanner scanner = new Scanner(System.in);
     private static final MoteurDeCombat moteurDeCombat= new MoteurDeCombat();
-    private static final int TOTAL_ENNEMIS =10;
     private int ennemisVaincus=0;
 
 
@@ -67,11 +64,11 @@ public class MoteurDeJeu {
 
     public void creerEnnemis() {
 
-        for (int i = 0; i < TOTAL_ENNEMIS+1; i++) {
+        for (int i = 0; i < ParametresCombat.TOTAL_ENNEMIS+1; i++) {
           ennemis.add(genererEnnemiAleatoire());
         }
          
-        System.out.println(TOTAL_ENNEMIS+" ennemis ont été créés.");
+        System.out.println(ParametresCombat.TOTAL_ENNEMIS+" ennemis ont été créés.");
     }
 
 
@@ -104,14 +101,14 @@ public class MoteurDeJeu {
             String nomClasse = Hero.CLASSES_DISPONIBLES.get(indexClasse);
 
         // Genere un nom de classe dynamiquement basé sur un indexClasse valide d'utilisateur 
-            try {
-                Class<? extends Hero> clazz = (Class<? extends Hero>) Class.forName("personnages." + nomClasse);
-                hero = clazz.getDeclaredConstructor(String.class).newInstance(nomHero);
-                } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException 
-                        | IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace(); 
-                    }
-                System.out.println("Un hero vient de naître  : " + hero.getClass().getSimpleName() + " nommé " + nomHero);    
+        try {
+            Class<? extends Hero> clazz = (Class<? extends Hero>) Class.forName("personnages." + nomClasse);
+            hero = clazz.getDeclaredConstructor(String.class).newInstance(nomHero);
+            } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException 
+                    | IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace(); 
+                }
+            System.out.println("Un hero vient de naître  : " + hero.getClass().getSimpleName() + " nommé " + nomHero);    
         }
     
 

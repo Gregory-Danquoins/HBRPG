@@ -96,9 +96,10 @@ public abstract class Personnage {
     le pouvoir correspondant renvois le montant de degat a infliger*/
     public void lancerPouvoir(Personnage cible, int indexPouvoir ){
 
-         int degats = aleaDegats(specialisation.lancerPouvoir(indexPouvoir, getAttaque())) ;
+         int degatsDuPouvoir = specialisation.lancerPouvoir(indexPouvoir, getAttaque());
+         int degats = aleaDegats(degatsDuPouvoir);
 
-         double coutMana = (double) degats / 3;
+         double coutMana = (double) degatsDuPouvoir / 3;
          
          if (mana < coutMana) {
             throw new ManaInsuffisantException();
@@ -140,7 +141,7 @@ public abstract class Personnage {
         }
         if (specialisation.getCategorie().equals("FEU")) {
             cible.setEtat(Personnage.ETATS[2]);
-            cible.setDegatsRececifs(degats/20);
+            cible.setDegatsRececifs(degats/5);
             cible.setCompteurEtat(3);
         }
         if (specialisation.getCategorie().equals("FURTIF")) {
@@ -159,8 +160,8 @@ public abstract class Personnage {
 
         // inflige des degats rececifs 
         if(getCompteurEtat() > 0){
-          totalDegats =  totalDegats + getDegatsRececifs();
-          setCompteurEtat(getCompteurEtat()-1);
+           totalDegats =  totalDegats + getDegatsRececifs();
+           setCompteurEtat(getCompteurEtat()-1);
           if(getCompteurEtat() == 0) setEtat("normal");
         } 
 
