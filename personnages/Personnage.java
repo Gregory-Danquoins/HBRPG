@@ -86,7 +86,7 @@ public abstract class Personnage {
     
     }
 
-    // Les degats envoyés avec une variation aleatoire de 20%, le cout en mana est proportionnel a la puissance de l'attaque
+    // Les degats envoyés avec une variation aleatoire de 20%
     public void attaquer(Personnage cible){
         int degats = aleaDegats(attaque);
         cible.prendreDegats(degats);
