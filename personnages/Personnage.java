@@ -161,7 +161,8 @@ public abstract class Personnage {
         if(getCompteurEtat() > 0){
           totalDegats =  totalDegats + getDegatsRececifs();
           setCompteurEtat(getCompteurEtat()-1);
-        }
+          if(getCompteurEtat() == 0) setEtat("normal");
+        } 
 
         pv = pv - totalDegats ;
 
@@ -241,6 +242,10 @@ public abstract class Personnage {
     // Modifie l'etat
     public void setEtat(String etat){
         this.etat = Arrays.asList(ETATS).indexOf(etat); 
+        if(etat.equals("normal")){
+            setDegatsRececifs(0);
+            setCompteurEtat(0);
+        }
     }
 
     public String getEtat(){

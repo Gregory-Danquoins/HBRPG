@@ -46,14 +46,22 @@ public class MoteurDeCombat {
 
     }
 
+    private String getAffichageEtat(Personnage joueur){
+        return joueur.getNom() +
+        " => PV: "+ joueur.getPv() +
+        "| Mana : " +joueur.getMana() +
+        "| XP: "+joueur.getXp()+"| Etat: "
+        + joueur.getEtat() + "| Potions: "
+        + joueur.getPotions().size();
+    }
+
     private void getActionDuJoueur(Personnage joueur, Personnage cible){
         int choix = 0;
 
         while (choix < 1 || choix > 3) {
             System.out.println(
                 
-            joueur.getNom() +" => PV: "+ joueur.getPv() + "| Mana : " +joueur.getMana() +"| XP: "+joueur.getXp()+"| Etat: "+ joueur.getEtat() + "| Potions: "+ joueur.getPotions().size()+
-            "\n"+ cible.getNom()+" => PV: "+ cible.getPv()+ "| Mana : " +cible.getMana() +"| XP: "+cible.getXp()+"| Etat: "+ cible.getEtat() + "| Potions: "+ joueur.getPotions().size()+
+            getAffichageEtat(joueur)+"\n"+ getAffichageEtat(cible)+
             "\n___________________________________________________\n"+
             "\n\n"+joueur.getNom()+" choisis une action : "+
             "\n 1. Attaquer"+
