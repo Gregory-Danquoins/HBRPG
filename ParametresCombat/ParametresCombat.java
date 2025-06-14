@@ -8,6 +8,7 @@ public abstract class ParametresCombat {
     // Active ou pas la régénération aprés chaque combat 
     public static final boolean RETABLISSEMENT = false;
 
+    // Déclenche le suicide explosif du mauvais perdant
     public static final boolean FURIE = false;
 
 }
