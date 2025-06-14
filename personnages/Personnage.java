@@ -25,7 +25,7 @@ public abstract class Personnage {
     public static final int ATTAQUE_DE_BASE=10;
     public static final int DEFENSE_DE_BASE=5;
     public static final int MANA_DE_BASE=10;
-    public static final int PV_DE_BASE=20;
+    public static final int PV_DE_BASE=50;
 
     private ArrayList<Potion> potions = new ArrayList<>();
     private Specialisation specialisation;
@@ -68,6 +68,14 @@ public abstract class Personnage {
         this.mana = this.manaDeDepart + (int) Math.sqrt(this.xp);
     }
 
+    // Apporte une variation aux degats entre 80 et 100%
+    private int aleaDegats(int degats){
+      double facteur = 0.8 + 0.2 * random.nextDouble();
+      double totalDegats = facteur * degats;
+    return (int) totalDegats;
+    
+    }
+
     // Les degats envoyés avec une variation aleatoire de 20%, le cout en mana est proportionnel a la puissance de l'attaque
     public void attaquer(Personnage cible){
         int degats = aleaDegats(attaque);
@@ -80,7 +88,7 @@ public abstract class Personnage {
 
          int degats = aleaDegats(specialisation.lancerPouvoir(pouvoir)) ;
 
-         mana= mana - degats/2;
+         mana = mana - degats/3;
 
         cible.prendreDegats(degats);
 
@@ -214,14 +222,6 @@ public abstract class Personnage {
         return pv;
     }
 
-    // Apporte une variation aux degats entre 80 et 100%
-    private int aleaDegats(int degats){
-        // double totalDegats = ( 0.8 + (1.0 - 0.8) * random.nextDouble() * degats);
-       double facteur = 0.8 + 0.2 * random.nextDouble();
-      double totalDegats = facteur * degats;
-    return (int) totalDegats;
-    
-    }
 
     // Modifie l'etat
     public void setEtat(String etat){
