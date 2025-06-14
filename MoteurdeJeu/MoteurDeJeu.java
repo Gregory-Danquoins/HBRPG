@@ -5,6 +5,8 @@ import factions.Hero;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import ParametresCombat.ParametresCombat;
 import personnages.*;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -96,10 +98,11 @@ public class MoteurDeJeu {
                     System.out.println("GAME OVER");
                     break;
             } else {
-                result.getVainqueur().augmenterXp(result.getPerdant().getXp()/5);
+                // Le vainqueur récupère 20% des xp du perdant 
+                result.getVainqueur().augmenterXp(result.getPerdant().getXp()/5, ParametresCombat.RETABLISSEMENT);
                 System.out.println(
-                "\n#### " +result.getVainqueur().getNom() + " a vaincu " + result.getPerdant().getNom() + " ###\n"+
-                " NOUVEL ADVERSAIRE \n"
+                "\n###### " +result.getVainqueur().getNom() + " a vaincu " + result.getPerdant().getNom() + " ######\n"+
+                " ###############  NOUVEL ADVERSAIRE  ################## \n"
                 );
                 
                 if(result.getVainqueur() != hero){

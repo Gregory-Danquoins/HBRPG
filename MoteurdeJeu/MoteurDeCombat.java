@@ -66,7 +66,8 @@ public class MoteurDeCombat {
             
         }
 
-        switch (choix) {
+        try {
+                switch (choix) {
             case 1:
                 joueur.attaquer(cible);
                 break;
@@ -79,6 +80,14 @@ public class MoteurDeCombat {
             default:
                 break;
         }
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            getActionDuJoueur(joueur, cible);
+
+        }
+
+        
     }
 
     private void afficherMenuPotion (Personnage joueur, Personnage cible) {

@@ -28,7 +28,8 @@ public class Furtif extends Specialisation{
     }
 
     private int assomer(int attaqueNormale){
-        return attaqueNormale*2;
+        double totalDegats = attaqueNormale*1.3;
+        return (int) totalDegats;
     }
    
 }

@@ -31,11 +31,13 @@ public class Feu extends Specialisation implements PouvoirSpecial{
     }
     
     private int lancerBouleDeFeu(int attaqueNormale){
-        return attaqueNormale*2;
+        double totalDegats = attaqueNormale*1.3;
+        return (int) totalDegats;
     }
     
     private int lancerMeteor(int attaqueNormale){
-        return attaqueNormale*2;
+        double totalDegats = attaqueNormale*1.3;
+        return (int) totalDegats;
     }
 
     

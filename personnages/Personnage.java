@@ -8,6 +8,9 @@ import equipements.PotionEtat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
+import Exceptions.ManaInsuffisantException;
+import ParametresCombat.ParametresCombat;
 import specialisations.Specialisation;
 
 
@@ -24,7 +27,7 @@ public abstract class Personnage {
     private final Random random = new Random();
     public static final int ATTAQUE_DE_BASE=10;
     public static final int DEFENSE_DE_BASE=5;
-    public static final int MANA_DE_BASE=10;
+    public static final int MANA_DE_BASE=50;
     public static final int PV_DE_BASE=50;
 
     private ArrayList<Potion> potions = new ArrayList<>();
@@ -52,7 +55,7 @@ public abstract class Personnage {
         this.defenseDeDepart = defense;
         this.manaDeDepart = mana;
         this.pvDedepart = pv;
-        this.augmenterXp(xp);
+        this.augmenterXp(xp, true);
         this.potions.add(new PotionDeVie());
         this.potions.add(new PotionEtat());
         this.potions.add(new PotionDeMana());
@@ -60,12 +63,19 @@ public abstract class Personnage {
     }
 
      // L'attaque et la défence sont modulé par la racine carrée des xp pour atténué l'impact d'un xp au fil de la progression
-    public void augmenterXp(int xp){
-        this.xp = this.xp + xp;
-        this.attaque = this.attaqueDeDepart + (int) Math.sqrt(this.xp);
-        this.defense = this.defenseDeDepart + (int) Math.sqrt(this.xp);
-        this.pv = this.pvDedepart + (int) Math.sqrt(this.xp);
-        this.mana = this.manaDeDepart + (int) Math.sqrt(this.xp);
+    public void augmenterXp(int xp , boolean retablissement){
+        
+        // Si retablissemnt est true le joueur récupere ses stats de départ avec le nouveau mont de xp
+        if(retablissement){
+            this.xp = this.xp + xp;
+            this.attaque = this.attaqueDeDepart + (int) Math.sqrt(this.xp);
+            this.defense = this.defenseDeDepart + (int) Math.sqrt(this.xp);
+            this.pv = this.pvDedepart + (int) Math.sqrt(this.xp);
+            this.mana = this.manaDeDepart + (int) Math.sqrt(this.xp);
+        } else {
+            this.xp = this.xp + xp;    
+        }
+        
     }
 
     // Apporte une variation aux degats entre 80 et 100%
@@ -88,13 +98,18 @@ public abstract class Personnage {
 
          int degats = aleaDegats(specialisation.lancerPouvoir(pouvoir, getAttaque())) ;
 
-         mana = mana - degats/3;
+         double coutMana = (double) degats / 3;
+         
+         if (mana < coutMana) {
+            throw new ManaInsuffisantException();
+         }
+         mana = mana - (int) coutMana;
 
         cible.prendreDegats(degats);
 
         /*Si l'attaque' a infliger les degats maximum , la cible subira également des effets secondaires
          en fonction de la specialité au tour suivant*/
-        if(degats > attaque*0.90){
+        if(degats > attaque*ParametresCombat.RATIO_COUP_CRITIQUE){
             infilgerEffetsSecondaire(cible, degats);   
         } 
 
@@ -102,7 +117,7 @@ public abstract class Personnage {
         Si les degats infligés sont strictement égaux au pv restant,
         la cible se fait exploser et emporte l'adversaire dans la mort
          */ 
-        if(degats == cible.getPv()){
+        if(degats == cible.getPv() || ParametresCombat.FURIE){
             cible.setEtat("furie");
             setPv(0);
             cible.setPv(0);
@@ -215,7 +230,7 @@ public abstract class Personnage {
 
     public void setPv(int pv) {
         this.pv = pv;
-        augmenterXp(0);
+        augmenterXp(0, ParametresCombat.RETABLISSEMENT);
     }
 
     public int getPv(){

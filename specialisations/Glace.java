@@ -29,11 +29,13 @@ public class Glace extends Specialisation {
     }
 
     private int lancerEclairdeGivre(int attaqueNormale){
-        return attaqueNormale*2;
+        double totalDegats = attaqueNormale*1.3;
+        return (int) totalDegats;
     }
     
     private int lancerBlizzard(int attaqueNormale){
-        return attaqueNormale*2;
+        double totalDegats = attaqueNormale*1.3;
+        return (int) totalDegats;
     }
     
 }

@@ -28,7 +28,8 @@ public class Tank extends Specialisation{
     }
 
     private int lancerExcalibur(int attaqueNormale){
-        return attaqueNormale*2;
+        double totalDegats = attaqueNormale*1.3;
+        return (int) totalDegats;
     }
    
 }
