@@ -1,4 +1,4 @@
-package ParametresCombat;
+package parametresCombat;
 
 public abstract class ParametresCombat {
 

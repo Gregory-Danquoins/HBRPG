@@ -1,14 +1,16 @@
-package MoteurdeJeu;
+package moteurdeJeu;
 
 import factions.Ennemi;
 import factions.Hero;
+import parametresCombat.ParametresCombat;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import ParametresCombat.ParametresCombat;
+
 import personnages.*;
 import java.io.FileWriter;
 import java.io.IOException;

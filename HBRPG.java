@@ -1,4 +1,4 @@
-import MoteurdeJeu.MoteurDeJeu;
+import moteurdeJeu.MoteurDeJeu;
 
 public class HBRPG {
     

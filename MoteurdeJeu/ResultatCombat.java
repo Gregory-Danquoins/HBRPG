@@ -1,4 +1,4 @@
-package MoteurdeJeu;
+package moteurdeJeu;
 
 import personnages.Personnage;
 
@@ -16,8 +16,8 @@ public class ResultatCombat {
         return vainqueur;
     }
 
-    public void setPerdant(Personnage Perdant) {
-        this.perdant = Perdant;
+    public void setPerdant(Personnage perdant) {
+        this.perdant = perdant;
     }
 
     public Personnage getPerdant() {

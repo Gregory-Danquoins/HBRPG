@@ -1,4 +1,4 @@
-package MoteurdeJeu;
+package moteurdeJeu;
 
 import java.util.List;
 import java.util.Scanner;

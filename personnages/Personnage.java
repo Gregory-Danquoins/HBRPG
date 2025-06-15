@@ -5,12 +5,13 @@ import equipements.Potion;
 import equipements.PotionDeMana;
 import equipements.PotionDeVie;
 import equipements.PotionEtat;
+import exceptions.ManaInsuffisantException;
+import parametresCombat.ParametresCombat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-import Exceptions.ManaInsuffisantException;
-import ParametresCombat.ParametresCombat;
 import specialisations.Specialisation;
 
 
